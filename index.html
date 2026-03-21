@@ -1048,7 +1048,7 @@
       .stage-wrap { min-height: 520px; height: 520px; }
       .message { min-width: auto; font-size: 13px; }
       .counter-left { width: 42%; min-width: 180px; }
-      .menu-board { width: 40%; }
+      .menu-board { display: none; }
       .window-glow { width: 130px; height: 100px; }
       .rug { left: 22%; right: 5%; height: 24%; }
       .table-top { width: 88px; height: 88px; }
@@ -2308,6 +2308,17 @@ function startGame() {
   showLevelIntroModal(state.runLevels[0]);
 }
 
+
+function scrollToGameMain() {
+  const target = document.getElementById('stageWrap') || document.getElementById('gameStage');
+  if (!target) return;
+  try {
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } catch (e) {
+    target.scrollIntoView(true);
+  }
+}
+
 function togglePause() {
   if (!state.isPlaying || state.awaitingLevelStart || els.overlay.classList.contains('show')) return;
   state.isPaused = !state.isPaused;
@@ -2356,6 +2367,7 @@ function showLevelIntroModal(level) {
       state.awaitingLevelStart = false;
       els.pauseButton.textContent = '暫停';
       setMessage(`開始第 ${state.levelIndex + 1} 關｜接住「${level.category}」正確話術`);
+      requestAnimationFrame(() => setTimeout(scrollToGameMain, 80));
       startLoop();
     };
   }
