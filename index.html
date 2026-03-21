@@ -2006,8 +2006,8 @@ function resetLevel(level) {
   state.consecutiveMissedCorrect = 0;
   state.wrongCaught = 0;
   const difficulty = state.levelIndex;
-  const spawnPlan = [1400, 1160, 950, 760, 700, 660];
-  const speedPlan = [112, 146, 180, 214, 232, 246];
+  const spawnPlan = [1600, 1320, 1080, 860, 790, 750];
+  const speedPlan = [66, 78, 88, 97, 101, 104];
   const goalPlan = [4, 5, 6, 7, 8, 10];
   state.goal = Math.max(1, goalPlan[difficulty] ?? (4 + difficulty));
   state.spawnMs = spawnPlan[difficulty] ?? Math.max(360, 1400 - difficulty * 220);
@@ -2139,7 +2139,7 @@ function showTermFlash(text, x, y, kind='good') {
   el.style.left = `${x}px`;
   el.style.top = `${y}px`;
   els.gameStage.appendChild(el);
-  setTimeout(() => el.remove(), 420);
+  setTimeout(() => el.remove(), 2920);
 }
 
 function setMessage(text) {
@@ -2231,7 +2231,7 @@ function step(ts) {
     if (state.spawnAccumulator >= state.spawnMs) {
       state.spawnAccumulator = 0;
       spawnItem();
-      const burstDelay = state.levelIndex >= 5 ? 260 : state.levelIndex >= 4 ? 240 : Math.max(160, 320 - state.levelIndex * 30);
+      const burstDelay = state.levelIndex >= 5 ? 320 : state.levelIndex >= 4 ? 290 : Math.max(200, 380 - state.levelIndex * 32);
       const extraSpawnCount = state.levelIndex >= 5 ? 1 : state.levelIndex >= 4 ? 1 : state.levelIndex >= 2 ? 1 : 0;
       const burstChance = state.levelIndex >= 5 ? 0.28 : state.levelIndex >= 4 ? 0.34 : 0.14 + state.levelIndex * 0.10;
       for (let i = 0; i < extraSpawnCount; i += 1) {
