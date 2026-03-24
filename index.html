@@ -2340,6 +2340,9 @@ function showLevelIntroModal(level) {
   ];
   showModal(`
     <div style="text-align:center;margin-bottom:8px;"><img src="${BANNER_BEAR_SRC}" alt="刑事Bear" style="width:136px;max-width:34vw;height:auto;display:inline-block;"></div>
+    <div class="actions" style="justify-content:center;margin-top:0;margin-bottom:12px;">
+      <button id="startLevelBtn">開始遊戲</button>
+    </div>
     <h2>第 ${state.levelIndex + 1} 關｜${level.category}</h2>
     <div class="section">
       <span class="label">這個關卡的手法是什麼？</span>
@@ -2353,9 +2356,6 @@ function showLevelIntroModal(level) {
         ${missionTips.map(item => `<div class="hint-item">${item}</div>`).join('')}
       </div>
       <p><strong>提示：</strong>${termHints || buildPromptHint(level).replace(/^提示：/, '')}</p>
-    </div>
-    <div class="actions">
-      <button id="startLevelBtn">開始遊戲</button>
     </div>
   `);
   const startBtn = document.getElementById('startLevelBtn');
